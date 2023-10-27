@@ -1,4 +1,4 @@
-from beyond_the_nest.beyond_the_nest import generate_text, load_transformers_model
+from beyond_the_nest.beyond_the_nest_models import generate_text, load_falcon_model_generation as load_transformers_model
 
 # Example usage:
 model_name = "tiiuae/falcon-7b-instruct"
