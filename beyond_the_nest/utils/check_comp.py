@@ -1,5 +1,9 @@
-from beyond_the_nest_models import load_falcon_model_classification, load_tokenizer
 from textattack.datasets import HuggingFaceDataset
+
+from beyond_the_nest.beyond_the_nest.utils.beyond_the_nest_models import (
+    load_falcon_model_classification,
+    load_tokenizer,
+)
 
 falcon = load_falcon_model_classification("tiiuae/falcon-7b-instruct")
 # falcon2 = falcon.to_bettertransformer()

@@ -30,7 +30,6 @@ To execute the script, run:
 Notes:
 - Make sure to have sufficient computational resources, as running attacks can be resource-intensive.
 """
-from beyond_the_nest_models import load_falcon_model_classification, load_tokenizer
 from textattack import Attack, AttackArgs, Attacker
 from textattack.constraints.pre_transformation import (
     RepeatModification,
@@ -41,6 +40,11 @@ from textattack.goal_functions import UntargetedClassification
 from textattack.models.wrappers import HuggingFaceModelWrapper
 from textattack.search_methods import GreedySearch
 from textattack.transformations import WordSwap
+
+from beyond_the_nest.beyond_the_nest.utils.beyond_the_nest_models import (
+    load_falcon_model_classification,
+    load_tokenizer,
+)
 
 # from tqdm import tqdm
 
