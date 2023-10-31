@@ -21,7 +21,5 @@ setup(
         "console_scripts": [
             "pullingace = pulling_ace.cli:main",
         ],
-            # Updated entry point for the console script
-            "pullingace = pulling_ace.cli:main",
     },
 )
