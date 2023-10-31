@@ -7,6 +7,13 @@
  */
 
 const updateCommitMessage = (commitMessage) => {
+  // Modify the updateCommitMessage function to include a detailed comment explaining its purpose and how it updates the commit message
+  // This function takes the existing commit message as input and returns a new commit message with the desired format
+  const newCommitMessage = "feat/fix: Update the commit message to provide a clear and concise explanation of the changes made"; // Replace with the desired commit message
+  return newCommitMessage;
+};
+
+const updateCommitMessage = (commitMessage) => {
   const newCommitMessage = "feat/fix: the commit message"; // Replace with the desired commit message
   return newCommitMessage;
 };
