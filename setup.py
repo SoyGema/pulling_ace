@@ -23,11 +23,10 @@ setup(
             "pullingace = pulling_ace.cli:main",
         ],
     },
-        "trunk>=1.18.0",
-        "console_scripts": [
-            "pullingace = pulling_ace.cli:main",
-        ],
-    },
+    "trunk>=1.18.0",
+    "console_scripts": [
+        "pullingace = pulling_ace.cli:main",
+    ],
 )
     "pullingace = pulling_ace.cli:main",
 
@@ -54,9 +53,8 @@ setup(
             "beyond_the_nest = pulling_ace.cli:main",
         ],
     },
-        "trunk>=1.18.0",
-        "console_scripts": [
-            "pullingace = pulling_ace.cli:main",
-        ],
-    },
+    "trunk>=1.18.0",
+    "console_scripts": [
+        "pullingace = pulling_ace.cli:main",
+    ],
 )
