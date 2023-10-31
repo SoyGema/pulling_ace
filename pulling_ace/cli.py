@@ -1,5 +1,9 @@
 # inside cli.py
 
+import beyond_the_nest
+
+# inside cli.py
+
 import argparse
 
 from .attacks.tomato_attack import perform_tomato_attack
