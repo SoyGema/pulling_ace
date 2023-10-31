@@ -33,9 +33,6 @@ USER appuser
 # Install application into container
 COPY . .
 
-# Run the executable
-ENTRYPOINT ["python", "-m", "beyond_the_nest"]
-CMD ["10"]
 # Install the module from the current directory
 RUN pip install -e .
 
