@@ -1,16 +1,20 @@
-# PullingAce: Benchmarking Adversarial Attacks for Hugging Face Models
+# PullingAce: Benchmarking Robustness for Hugging Face Models
 
 > [!NOTE]
 > Repository under active construction
 
 PullingAce is a Python library designed to benchmark adversarial attacks on Hugging Face models. Built on top of TextAttack, PullingAce incorporates a set of recipes to assess the robustness of various natural language processing models. This tool provides a comprehensive evaluation of model vulnerabilities and helps researchers and practitioners in the field of machine learning understand the strengths and weaknesses of different models.
 
-## Features
+## Features for Classification
+
 - **Adversarial Attack Benchmarks**: PullingAce provides a collection of adversarial attack benchmarks tailored for Hugging Face models. Evaluate model robustness against state-of-the-art attacks.
 
 - **Incorporating TextAttack Recipes**: PullingAce integrates TextAttack's powerful attack recipes, making it easy to experiment with different attack strategies and customize evaluations.
 
 - **Effortless Evaluation**: With PullingAce, you can effortlessly assess the performance of your Hugging Face models against adversarial attacks. Obtain detailed insights into your model's strengths and areas for improvement.
+
+## Features for Generative Models
+
 
 ## Installation
 
@@ -20,7 +24,7 @@ To get started with PullingAce, you can install it using pip:
 pip install pullingace
 
 ## Try
-beyondthenest --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
+pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
 
 ```
 
@@ -29,25 +33,25 @@ This package was created with Cookiecutter and the [sourcery-ai/python-best-prac
 
 
 
-### Builds
+### Notes for Builds
 
 This is right now intented to be a python library 
 Uninstall the Previous Version: If you have a previous version of the package installed, you can uninstall it first to avoid conflicts. You can use the following command for that:
 
-bash
-Copy code
+```bash
 pip uninstall your_package_name
+``````
 Replace your_package_name with the name of your package.
 
 Increment the Version Number: If you've made changes that you want to distribute, it's a good practice to increment the version number in your setup.py file.
 
-python
-Copy code
+```python
 setup(
     name='your_package_name',
     version='0.2',  # Increment this number
     # ...
 )
+``````
 Clear Old Build Directories: Remove old build artifacts to make sure you're starting fresh. Navigate to the folder containing setup.py and run:
 
 ```bash
