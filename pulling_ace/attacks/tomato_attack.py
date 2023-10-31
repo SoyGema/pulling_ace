@@ -14,7 +14,6 @@ The attack strategy uses the following components:
 - Constraints: No repeat modification, no stopword modification
 - Search Method: Greedy Search
 
-The Falcon model is assessed for its robustness against these adversarial examples using the SST-2 dataset, which is a binary classification dataset.
 
 Dependencies:
 - TextAttack
@@ -23,9 +22,7 @@ Dependencies:
 - tqdm
 
 Usage:
-Run this script with Python 3.x. Make sure you have installed all required libraries.
-To execute the script, run:
-    python your_script_name.py
+via cli after installing the library
 
 Notes:
 - Make sure to have sufficient computational resources, as running attacks can be resource-intensive.

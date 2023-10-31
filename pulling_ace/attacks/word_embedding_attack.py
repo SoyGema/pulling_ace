@@ -40,7 +40,7 @@ from textattack.models.wrappers import HuggingFaceModelWrapper
 from textattack.search_methods import GreedySearch
 from textattack.transformations import WordSwapEmbedding
 
-from ..utils.beyond_the_nest_models import load_model_classification, load_tokenizer
+from ..utils.pulling_ace_models import load_model_classification, load_tokenizer
 
 
 def perfom_word_embedding_attack(model_name, dataset_name):
