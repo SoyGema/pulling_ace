@@ -1,5 +1,8 @@
 # PullingAce: Benchmarking Adversarial Attacks for Hugging Face Models
 
+> [!NOTE]
+> Repository under active construction
+
 PullingAce is a Python library designed to benchmark adversarial attacks on Hugging Face models. Built on top of TextAttack, PullingAce incorporates a set of recipes to assess the robustness of various natural language processing models. This tool provides a comprehensive evaluation of model vulnerabilities and helps researchers and practitioners in the field of machine learning understand the strengths and weaknesses of different models.
 
 ## Features
@@ -16,20 +19,9 @@ To get started with PullingAce, you can install it using pip:
 ```bash
 pip install pullingace
 
+## Try
+beyondthenest --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
 
-
-
-## Setup
-
-
-## Setup
-```sh
-# Install dependencies
-pipenv install --dev
-
-# Setup pre-commit and pre-push hooks
-pipenv run pre-commit install -t pre-commit
-pipenv run pre-commit install -t pre-push
 ```
 
 ## Credits
@@ -58,20 +50,30 @@ setup(
 )
 Clear Old Build Directories: Remove old build artifacts to make sure you're starting fresh. Navigate to the folder containing setup.py and run:
 
-bash
+```bash
 Copy code
 rm -rf build dist your_package_name.egg-info
-Replace your_package_name with the name of your package.
+```
+
 
 Rebuild the Package: Navigate to the folder where your setup.py file is located and run:
 
-bash
-Copy code
+```bash
 pip install .
-This will rebuild the package and install it.
+```
 
 Check Installation: You can check if the package is installed correctly by running:
 
-bash
+```bash
 Copy code
 pip list
+```
+
+## Setup
+```sh
+# Install dependencies
+pipenv install --dev
+
+# Setup pre-commit and pre-push hooks
+pipenv run pre-commit install -t pre-commit
+pipenv run pre-commit install -t pre-push
