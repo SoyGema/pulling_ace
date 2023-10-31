@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="beyond_the_nest",
+    name="pulling_ace",
     version="0.1",
     packages=find_packages(),
     install_requires=[
@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "beyondthenest = beyond_the_nest.cli:main",
+            "pullingace = pulling_ace.cli:main",
         ],
     },
 )
