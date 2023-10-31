@@ -20,7 +20,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "beyond_the_nest = pulling_ace.cli:main",
+            "pullingace = pulling_ace.cli:main",
         ],
     },
 )
