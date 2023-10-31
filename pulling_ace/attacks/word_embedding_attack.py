@@ -27,6 +27,16 @@ Execute the script after setting up the model and dataset. Monitor the attack's 
 Note:
 Experiment with different combinations of transformations, constraints, and search methods to find the most effective attack strategy for a given model and dataset.
 
+Updated attack strategy:
+- Added WordSwapGradientBased transformation to suggest optimal word swaps based on the model's gradient.
+- Added WordSwapNearestNeighbor transformation to swap words with their nearest neighbors in the embedding space.
+- Added WordSwapRandomCharacterInsertion transformation to randomly insert a character into a word.
+- Added WordSwapRandomCharacterSubstitution transformation to randomly substitute a character within a word.
+- Added WordSwapRandomCharacterDeletion transformation to randomly delete a character from a word.
+- Added MaxWordsPerturbed constraint to limit the number of words that can be perturbed in the text.
+- Added RepeatModification constraint to ensure that the same word is not modified more than once.
+- Added StopwordModification constraint to prevent the modification of stopwords.
+- Updated search method to GreedySearch for selecting the best transformation until the goal function is satisfied or no transformations can be applied.
 """
 from textattack import Attack, AttackArgs, Attacker
 from textattack.constraints.grammaticality import PartOfSpeech
@@ -75,3 +85,5 @@ def perfom_word_embedding_attack(model_name, dataset_name):
     attack_results = attacker.attack_dataset()
 
     print(attack_results)
+from textattack.transformations import WordSwapGradientBased, WordSwapNearestNeighbor, WordSwapRandomCharacterInsertion, WordSwapRandomCharacterSubstitution, WordSwapRandomCharacterDeletion
+from textattack.constraints.semantics.sentence_encoders.universal_sentence_encoder import UniversalSentenceEncoder
