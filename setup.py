@@ -16,8 +16,10 @@ setup(
         "safetensors",
         "wandb",
         "textattack",
+        "trunk>=1.18.0",
     ],
     entry_points={
+        "trunk>=1.18.0",
         "console_scripts": [
             "pullingace = pulling_ace.cli:main",
         ],
