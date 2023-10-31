@@ -5,7 +5,7 @@
 
 import argparse
 
-# Remove the duplicate import statement for beyond_the_nest
+from .attacks.tomato_attack import perform_tomato_attack
 
 
 def main():
@@ -19,8 +19,9 @@ def main():
 
     args = parser.parse_args()
 
-    # Add the correct import statement for perform_tomato_attack from .attacks.tomato_attack
-    from .attacks.tomato_attack import perform_tomato_attack
+    if args.attack == "tomato":
+        results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
+        print(results)
     
     if args.attack == "tomato":
         results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
