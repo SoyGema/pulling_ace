@@ -1,5 +1,10 @@
 import torch
-from transformers import AutoTokenizer, FalconForSequenceClassification, pipeline
+from transformers import (
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    FalconForSequenceClassification,
+    pipeline,
+)
 
 
 def load_falcon_model_generation(model_name):
@@ -22,6 +27,12 @@ def load_falcon_model_generation(model_name):
 def load_falcon_model_classification(model_name):
     # load model for classification
     model = FalconForSequenceClassification.from_pretrained(model_name)
+    return model
+
+
+def load_model_classification(model_name):
+    # load model for classification
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
     return model
 
 

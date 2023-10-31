@@ -40,38 +40,47 @@ from textattack.models.wrappers import HuggingFaceModelWrapper
 from textattack.search_methods import GreedySearch
 from textattack.transformations import WordSwapEmbedding
 
-from ..utils.beyond_the_nest_models import load_model_classification, load_tokenizer
+from beyond_the_nest.beyond_the_nest.utils.beyond_the_nest_models import (
+    load_falcon_model_classification,
+    load_tokenizer,
+)
+
+falcon = load_falcon_model_classification("tiiuae/falcon-7b-instruct")
+# falcon2 = falcon.to_bettertransformer()
+tokenizer = load_tokenizer("tiiuae/falcon-7b-instruct")
+tokenizer.pad_token = tokenizer.eos_token
 
 
-def perfom_word_embedding_attack(model_name, dataset_name):
-    falcon = load_model_classification(model_name)
-    # falcon2 = falcon.to_bettertransformer()
-    tokenizer = load_tokenizer(model_name)
-    tokenizer.pad_token = tokenizer.eos_token
+if tokenizer.pad_token is None:
+    tokenizer.add_special_tokens({"pad_token": "[PAD]"})
+    falcon.resize_token_embeddings(len(tokenizer))
 
-    model_wrapper = HuggingFaceModelWrapper(falcon, tokenizer)
-    goal_function = UntargetedClassification(model_wrapper)
 
-    ### Unclear if this dataset is going to work with falcon
-    dataset = HuggingFaceDataset(dataset_name, None, "test")
+model_wrapper = HuggingFaceModelWrapper(falcon, tokenizer)
+goal_function = UntargetedClassification(model_wrapper)
 
-    ## TODO
-    # from textattack.constraints.semantics.sentence_encoders.universal_sentence_encoder import UniversalSentenceEncoder
+### Unclear if this dataset is going to work with falcon
+dataset = HuggingFaceDataset("sst2", None, "test")
 
-    transformation = WordSwapEmbedding(max_candidates=50)
 
-    constraints = [RepeatModification(), StopwordModification(), PartOfSpeech()]
+## TODO
+# from textattack.constraints.semantics.sentence_encoders.universal_sentence_encoder import UniversalSentenceEncoder
 
-    search_method = GreedySearch()
-    # OR, using Beam Search with a beam width of 5
-    # search_method = BeamSearch(beam_width=5)
+transformation = WordSwapEmbedding(max_candidates=50)
 
-    attack = Attack(goal_function, constraints, transformation, search_method)
+constraints = [RepeatModification(), StopwordModification(), PartOfSpeech()]
 
-    print(attack)
+search_method = GreedySearch()
+# OR, using Beam Search with a beam width of 5
+# search_method = BeamSearch(beam_width=5)
 
-    attack_args = AttackArgs(num_examples=10)
-    attacker = Attacker(attack, dataset, attack_args)
-    attack_results = attacker.attack_dataset()
 
-    print(attack_results)
+attack = Attack(goal_function, constraints, transformation, search_method)
+
+print(attack)
+
+attack_args = AttackArgs(num_examples=10)
+attacker = Attacker(attack, dataset, attack_args)
+attack_results = attacker.attack_dataset()
+
+print(attack_results)
