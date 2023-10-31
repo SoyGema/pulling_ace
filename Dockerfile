@@ -30,9 +30,10 @@ RUN useradd --create-home appuser
 WORKDIR /home/appuser
 USER appuser
 
-# Install application into container
+ENTRYPOINT ["python", "-m", "beyond_the_nest"]
+CMD ["python", "-m", "pulling_ace.cli", "10"]
 COPY . .
 
 # Run the executable
-ENTRYPOINT ["python", "-m", "beyond_the_nest"]
+ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
 CMD ["10"]
