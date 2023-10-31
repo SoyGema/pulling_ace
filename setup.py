@@ -30,6 +30,9 @@ setup(
     },
 )
     "pullingace = pulling_ace.cli:main",
+# beyond_the_nest dependency
+# This dependency is used for XYZ functionality.
+# It provides ABC capabilities to the codebase.
 
 setup(
     name="pulling_ace",
