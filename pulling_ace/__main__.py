@@ -1,3 +1,4 @@
+import beyond_the_nest
 from beyond_the_nest.beyond_the_nest import generate_text, load_transformers_model
 
 # Example usage:
