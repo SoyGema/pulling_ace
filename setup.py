@@ -24,7 +24,7 @@ setup(
         ],
     },
 )
-    "beyond_the_nest = pulling_ace.cli:main",
+    "pullingace = pulling_ace.cli:main",
 
 setup(
     name="pulling_ace",
