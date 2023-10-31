@@ -13,8 +13,8 @@ FROM base AS python-deps
 RUN pip install pipenv
 RUN apt-get update && apt-get install -y --no-install-recommends gcc
 
-# Install python dependencies in /.venv
-COPY Pipfile .
+ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
+CMD ["10"]
 COPY Pipfile.lock .
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
@@ -30,9 +30,8 @@ RUN useradd --create-home appuser
 WORKDIR /home/appuser
 USER appuser
 
-ENTRYPOINT ["python", "-m", "beyond_the_nest"]
-CMD ["python", "-m", "pulling_ace.cli", "10"]
-COPY . .
+ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
+CMD ["10"]
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
