@@ -44,15 +44,15 @@ from ..utils.pulling_ace_models import load_model_classification, load_tokenizer
 
 
 def perfom_word_embedding_attack(model_name, dataset_name):
-    falcon = load_model_classification(model_name)
+    model = load_model_classification(model_name)
     # falcon2 = falcon.to_bettertransformer()
     tokenizer = load_tokenizer(model_name)
     tokenizer.pad_token = tokenizer.eos_token
 
-    model_wrapper = HuggingFaceModelWrapper(falcon, tokenizer)
+    model_wrapper = HuggingFaceModelWrapper(model, tokenizer)
     goal_function = UntargetedClassification(model_wrapper)
 
-    ### Unclear if this dataset is going to work with falcon
+    ###
     dataset = HuggingFaceDataset(dataset_name, None, "test")
 
     ## TODO
