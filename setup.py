@@ -16,11 +16,11 @@ setup(
         "safetensors",
         "wandb",
         "textattack",
-        "pulling_ace>=1.18.0",
+        "beyond_the_nest>=1.18.0",
     ],
     entry_points={
         "console_scripts": [
-            "pullingace = pulling_ace.cli:main",
+            "beyond_the_nest = pulling_ace.cli:main",
         ],
     },
         "trunk>=1.18.0",
