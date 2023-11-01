@@ -85,5 +85,3 @@ def perfom_word_embedding_attack(model_name, dataset_name):
     attack_results = attacker.attack_dataset()
 
     print(attack_results)
-from textattack.transformations import WordSwapGradientBased, WordSwapNearestNeighbor, WordSwapRandomCharacterInsertion, WordSwapRandomCharacterSubstitution, WordSwapRandomCharacterDeletion
-from textattack.constraints.semantics.sentence_encoders.universal_sentence_encoder import UniversalSentenceEncoder
