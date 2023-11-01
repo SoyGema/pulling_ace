@@ -41,7 +41,7 @@ Uninstall the Previous Version: If you have a previous version of the package in
 ```bash
 pip uninstall pullingace
 ```
-Replace  pullingace with the name of your package.
+Replace pullingace with the name of your package.
 
 Increment the Version Number: If you've made changes that you want to distribute, it's a good practice to increment the version number in your setup.py file.
 
