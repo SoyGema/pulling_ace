@@ -55,3 +55,8 @@ setup(
         ],
     },
 )
+    "trunk>=1.18.0",
+    "console_scripts": [
+        "pullingace = pulling_ace.cli:main",
+    ],
+},
