@@ -1,0 +1,22 @@
+import os
+
+def create_trunk_yaml_file():
+    file_path = ".trunk/trunk.yaml"
+    content = "linters:\n  - actionlint"
+
+    with open(file_path, "w") as file:
+        file.write(content)
+
+# Unit test for create_trunk_yaml_file
+def test_create_trunk_yaml_file(mock_open):
+    # Mock the file handling library
+    mock_file = mock_open.return_value
+
+    # Call the function
+    create_trunk_yaml_file()
+
+    # Assert that the file is created with the correct content
+    mock_file.write.assert_called_once_with("linters:\n  - actionlint")
+
+# Run the unit test
+test_create_trunk_yaml_file()
