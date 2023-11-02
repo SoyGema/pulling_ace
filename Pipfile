@@ -17,6 +17,7 @@ torch = "*"
 safetensors = "*"
 evaluate = "*"
 datasets = "*"
+garak = "*"
 
 [dev-packages]
 black = "==22.3.0"
