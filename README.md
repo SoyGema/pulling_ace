@@ -32,14 +32,6 @@ To use the `run_injections` function with the `promptinject` probe family, you c
 run_injections("huggingface", "gpt2", "promptinject")
 ```
 You can toxicity and prompt injection in your Hugginface model using garak probes calling --toxicity or --promptinjection.
-
-### Example Usage
-
-To use the `run_injections` function with the `promptinject` probe family, you can call it as follows:
-
-```python
-run_injections("huggingface", "gpt2", "promptinject")
-```
 =======
 ## pulling_ace/utils/subprocessor.py
 
