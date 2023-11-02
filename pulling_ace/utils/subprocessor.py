@@ -1,3 +1,4 @@
+import multiprocessing
 import subprocess
 
 PROBE_FAMILIES = {
@@ -87,19 +88,18 @@ PROBE_FAMILIES = {
 }
 
 
-def promptinjection(model_type, model_name, probe_family, probe):
+def promptinjection(model_type, model_name, probe):
     """
-    Run the Garak tool with prompt injection using specified probes.
+    Run the Garak tool with prompt injection using specified probes from the 'promptinject' family.
 
     Parameters:
     model_type (str): The type of the model (e.g., "huggingface").
     model_name (str): The name of the model (e.g., "gpt2").
-    probe_family (str): The family of the probe (e.g., "promptinject").
     probe (str): The probe to be used (e.g., "HijackHateHumans").
     """
-    # Validate that the probe belongs to the specified family
-    if probe not in PROBE_FAMILIES.get(probe_family, []):
-        print(f"Invalid probe {probe} for family {probe_family}")
+    # Validate that the probe belongs to the 'promptinject' family
+    if probe not in PROBE_FAMILIES.get("promptinject", []):
+        print(f"Invalid probe {probe} for 'promptinject' family")
         return
 
     command = [
@@ -111,7 +111,7 @@ def promptinjection(model_type, model_name, probe_family, probe):
         "--model_name",
         model_name,
         "--probes",
-        f"{probe_family}.{probe}",
+        f"promptinject.{probe}",
     ]
 
     try:
@@ -124,16 +124,24 @@ def promptinjection(model_type, model_name, probe_family, probe):
         print(f"Failed to execute command. Error: {e}")
 
 
-# Example usage:
-promptinjection("huggingface", "gpt2", "promptinject", "HijackHateHumans")
+def promptinjection_wrapper(args):
+    return promptinjection(args["model_type"], args["model_name"], args["probe"])
 
 
-def list_probes():
-    """
-    List available probes for prompt injection.
-    """
-    # Dummy example; replace with actual logic to list probes if necessary
-    probes = ["dan.Dan_11_0", "dan.Dan_11_1", "dan.Dan_11_2"]
-    print("Available probes for prompt injection:")
-    for probe in probes:
-        print(f"- {probe}")
+def run_multiple_injections(model_type, model_name):
+    with multiprocessing.Pool() as pool:
+        args_list = [
+            {
+                "model_type": model_type,
+                "model_name": model_name,
+                "probe": probe,
+            }
+            for probe in PROBE_FAMILIES.get("promptinject", [])
+        ]
+
+        pool.map(promptinjection_wrapper, args_list)
+
+
+# Example usage
+if __name__ == "__main__":
+    run_multiple_injections("huggingface", "gpt2")
