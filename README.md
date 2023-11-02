@@ -147,4 +147,5 @@ To use the `run_injections` function with the `promptinject` probe family, you c
 ```python
 run_injections("huggingface", "gpt2", "promptinject")
 ```
+You can toxicity and prompt injection in your Hugginface model using garak probes calling --toxicity or --promptinjection.
 pipenv run pre-commit install -t pre-push
