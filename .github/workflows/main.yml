@@ -27,7 +27,7 @@ jobs:
         pipenv run flake8 pulling_ace tests
     - name: Type check with mypy
       run: |
-        pipenv run mypy --ignore-missing-imports ./pulling_ace/*.py
+        pipenv run mypy --ignore-missing-imports ./correct_directory/*.py
     - name: Test with pytest
       run: |
         pipenv run pytest
