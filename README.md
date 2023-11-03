@@ -3,7 +3,7 @@
 > [!NOTE]
 > Repository under active construction
 
-PullingAce is a Python library designed to benchmark adversarial attacks on Hugging Face models. Built on top of TextAttack, PullingAce incorporates a set of recipes to assess the robustness of various natural language processing models. This tool provides a comprehensive evaluation of model vulnerabilities and helps researchers and practitioners in the field of machine learning understand the strengths and weaknesses of different models.
+PullingAce is a Python library designed to benchmark adversarial attacks on Hugging Face models. Built on top of TextAttack and Garak, PullingAce incorporates a set of recipes to assess the robustness of various natural language processing models in classification and generation taks. This tool provides a comprehensive evaluation of model vulnerabilities and helps researchers and practitioners in the field of machine learning understand the strengths and weaknesses of different models.
 
 ## Features for Classification
 
@@ -11,10 +11,23 @@ PullingAce is a Python library designed to benchmark adversarial attacks on Hugg
 
 - **Incorporating TextAttack Recipes**: PullingAce integrates TextAttack's powerful attack recipes, making it easy to experiment with different attack strategies and customize evaluations.
 
-- **Effortless Evaluation**: With PullingAce, you can effortlessly assess the performance of your Hugging Face models against adversarial attacks. Obtain detailed insights into your model's strengths and areas for improvement.
+### CLI Example
+```bash
+pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
+```
+
 
 ## Features for Generative Models
 
+- **Prompt Injection**: PullingAce integrates the prompt injection feature from the Garak library, allowing for more dynamic and flexible adversarial attacks.
+
+- **Toxicity**: PullingAce incorporates Garak's toxicity features, providing additional metrics for evaluating model robustness.
+
+### CLI Example
+```bash
+# Replace with a specific command for prompt injection
+pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" 
+```
 
 ## Installation
 
@@ -32,32 +45,6 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 
 ```
 
-## Credits
-## Features for Generative Models
-=======
-## Features for Generative Models
-
-- **Prompt Injection**: PullingAce integrates the prompt injection feature from the Garak library, allowing for more dynamic and flexible adversarial attacks.
-- **Toxicity Features**: PullingAce incorporates Garak's toxicity features, providing additional metrics for evaluating model robustness.
-- **Garak Integration**: By integrating features from the Garak library, PullingAce offers a wider range of attack strategies and evaluation metrics.
-
-### CLI Example
-```bash
-# Replace with a specific command for prompt injection
-pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
-```
-## Features for Classification
-=======
-## Features for Classification
-
-### CLI Example
-```bash
-pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
-```
-
-### How is PullingAce different from TextAttack?
-
-PullingAce uses built-in recipes from the TextAttack library but provides additional features and customizations.
 This package was created with Cookiecutter and the [sourcery-ai/python-best-practices-cookiecutter](https://github.com/sourcery-ai/python-best-practices-cookiecutter) project template.
 
 
