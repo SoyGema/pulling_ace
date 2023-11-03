@@ -23,6 +23,7 @@ ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
 CMD ["10"]
 COPY Pipfile.lock .
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
+RUN pip install pulling_ace
 
 
 FROM base AS runtime
