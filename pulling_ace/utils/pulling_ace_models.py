@@ -1,5 +1,5 @@
 import torch
-from transformers import (  # type: ignore
+from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
     FalconForSequenceClassification,
