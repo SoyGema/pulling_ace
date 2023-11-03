@@ -1,3 +1,4 @@
+# No changes needed as the imports are already at the top and in the correct order
 import torch
 from transformers import (
     AutoModelForSequenceClassification,
@@ -31,12 +32,71 @@ def load_falcon_model_classification(model_name):
 
 
 def load_model_classification(model_name):
+    """
+    Load a model for classification.
+
+    Parameters:
+    model_name (str): The name of the model to load.
+
+    Returns:
+    model: The loaded model.
+    """
     # load model for classification
     model = AutoModelForSequenceClassification.from_pretrained(model_name)
     return model
 
 
 def load_tokenizer(model_name):
+    """
+    Load a tokenizer.
+
+    Parameters:
+    model_name (str): The name of the model to load the tokenizer for.
+
+    Returns:
+    tokenizer: The loaded tokenizer.
+    """
+    return AutoTokenizer.from_pretrained(model_name)
+
+
+def generate_text(
+    model, input_text, max_length=200, do_sample=True, top_k=10, num_return_sequences=1
+):
+    result = model(
+        input_text,
+        max_length=max_length,
+        do_sample=do_sample,
+        top_k=top_k,
+        num_return_sequences=num_return_sequences,
+    )
+    return result[0]["generated_text"]
+
+
+def load_model_classification(model_name):
+    """
+    Load a model for classification.
+
+    Parameters:
+    model_name (str): The name of the model to load.
+
+    Returns:
+    model: The loaded model.
+    """
+    # load model for classification
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
+    return model
+
+
+def load_tokenizer(model_name):
+    """
+    Load a tokenizer.
+
+    Parameters:
+    model_name (str): The name of the model to load the tokenizer for.
+
+    Returns:
+    tokenizer: The loaded tokenizer.
+    """
     return AutoTokenizer.from_pretrained(model_name)
 
 
