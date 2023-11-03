@@ -47,9 +47,27 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 
 This package was created with Cookiecutter and the [sourcery-ai/python-best-practices-cookiecutter](https://github.com/sourcery-ai/python-best-practices-cookiecutter) project template.
 
+## Setup
+```sh
+# Install dependencies
+pipenv install --dev
 
+# Setup pre-commit and pre-push hooks
+pipenv run pre-commit install -t pre-commit
+pipenv run pre-commit install -t pre-push
+```
 
-### Notes for Builds
+## Unit Tests
+
+Unit tests are a crucial part of software development, ensuring the reliability and correctness of the code. They help to identify and fix bugs, prevent future bugs, and improve the design of the software.
+
+In this project, we use pytest for testing. You can run the unit tests with the following command:
+
+```sh
+pytest test/
+```
+
+The unit tests are located in the `test/` directory. Each test file is designed to test a specific part of the codebase, ensuring that each function behaves as expected under a variety of conditions.
 
 This is right now intented to be a python library 
 Uninstall the Previous Version: If you have a previous version of the package installed, you can uninstall it first to avoid conflicts. You can use the following command for that:
