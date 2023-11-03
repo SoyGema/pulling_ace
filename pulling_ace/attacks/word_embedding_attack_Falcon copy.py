@@ -28,6 +28,10 @@ Note:
 Experiment with different combinations of transformations, constraints, and search methods to find the most effective attack strategy for a given model and dataset.
 
 """
+from beyond_the_nest.beyond_the_nest.utils.beyond_the_nest_models import (
+    load_falcon_model_classification,
+    load_tokenizer,
+)
 from textattack import Attack, AttackArgs, Attacker
 from textattack.constraints.grammaticality import PartOfSpeech
 from textattack.constraints.pre_transformation import (
@@ -39,11 +43,6 @@ from textattack.goal_functions import UntargetedClassification
 from textattack.models.wrappers import HuggingFaceModelWrapper
 from textattack.search_methods import GreedySearch
 from textattack.transformations import WordSwapEmbedding
-
-from beyond_the_nest.beyond_the_nest.utils.beyond_the_nest_models import (
-    load_falcon_model_classification,
-    load_tokenizer,
-)
 
 falcon = load_falcon_model_classification("tiiuae/falcon-7b-instruct")
 # falcon2 = falcon.to_bettertransformer()
