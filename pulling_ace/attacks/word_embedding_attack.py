@@ -54,6 +54,16 @@ from ..utils.pulling_ace_models import load_model_classification, load_tokenizer
 
 
 def perfom_word_embedding_attack(model_name, dataset_name):
+    """
+    Perform a word embedding attack on a given model and dataset.
+
+    Parameters:
+    model_name (str): The name of the model to attack.
+    dataset_name (str): The name of the dataset to use for the attack.
+
+    Returns:
+    None
+    """
     model = load_model_classification(model_name)
     # falcon2 = falcon.to_bettertransformer()
     tokenizer = load_tokenizer(model_name)
@@ -74,8 +84,31 @@ def perfom_word_embedding_attack(model_name, dataset_name):
 
     search_method = GreedySearch()
     # OR, using Beam Search with a beam width of 5
-    # search_method = BeamSearch(beam_width=5)
-
+    def perfom_word_embedding_attack(model_name, dataset_name):
+        model = load_model_classification(model_name)
+        tokenizer = load_tokenizer(model_name)
+        tokenizer.pad_token = tokenizer.eos_token
+    
+        model_wrapper = HuggingFaceModelWrapper(model, tokenizer)
+        goal_function = UntargetedClassification(model_wrapper)
+    
+        dataset = HuggingFaceDataset(dataset_name, None, "test")
+    
+        transformation = WordSwapEmbedding(max_candidates=50)
+    
+        constraints = [RepeatModification(), StopwordModification(), PartOfSpeech()]
+    
+        search_method = GreedySearch()
+    
+        attack = Attack(goal_function, constraints, transformation, search_method)
+    
+        print(attack)
+    
+        attack_args = AttackArgs(num_examples=10)
+        attacker = Attacker(attack, dataset, attack_args)
+        attack_results = attacker.attack_dataset()
+    
+        print(attack_results)
     attack = Attack(goal_function, constraints, transformation, search_method)
 
     print(attack)
