@@ -15,6 +15,9 @@ COPY Pipfile Pipfile.lock /app/
 # Set the working directory to /app
 WORKDIR /app
 
+# Copy the pulling_ace directory into the Docker image
+COPY pulling_ace /app/pulling_ace
+
 # Install pipenv and compilation dependencies
 RUN pip install pipenv
 RUN apt-get update && apt-get install -y --no-install-recommends gcc
@@ -38,5 +41,4 @@ USER appuser
 
 
 # Run the executable
-ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
-CMD ["10"]
+RUN docker run --rm beyond_the_nest:test 10
