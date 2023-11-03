@@ -30,4 +30,4 @@ jobs:
         pipenv run pytest
     - name: Typecheck with mypy
       run: |
-        pipenv run mypy pulling_ace/*.py
+        pipenv run mypy pulling_ace/**/*.py
