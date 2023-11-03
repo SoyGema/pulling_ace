@@ -29,6 +29,20 @@ RUN pip install pulling_ace
 FROM base AS runtime
 
 # Copy virtual env from python-deps stage
+RUN pip install .
+RUN pip install pipenv
+RUN apt-get update && apt-get install -y --no-install-recommends gcc
+
+ENTRYPOINT ["python", "-m", "pulling_ace.__main__"]
+CMD ["10"]
+COPY Pipfile.lock .
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
+RUN pip install pulling_ace
+
+
+FROM base AS runtime
+
+# Copy virtual env from python-deps stage
 COPY --from=python-deps /app/.venv /app/.venv
 ENV PATH="/.venv/bin:$PATH"
 
