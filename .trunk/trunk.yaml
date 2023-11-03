@@ -1,1 +1,9 @@
-
+cli_version: latest
+build_steps:
+  - install dependencies command
+  - build project command
+test_steps:
+  - run unit tests command
+  - run integration tests command
+deploy_steps:
+  - deploy to environment command
