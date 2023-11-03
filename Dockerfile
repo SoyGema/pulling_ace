@@ -22,8 +22,9 @@ COPY pulling_ace /app/pulling_ace
 RUN pip install pipenv
 RUN apt-get update && apt-get install -y --no-install-recommends gcc
 
-ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
-CMD ["10"]
+ENV PYTHONPATH /app
+ENTRYPOINT ["python", "-m", "pulling_ace"]
+CMD ["cli", "10"]
 COPY Pipfile.lock .
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
@@ -41,4 +42,5 @@ USER appuser
 
 
 # Run the executable
-RUN docker run --rm beyond_the_nest:test 10
+ENTRYPOINT ["python", "-m", "pulling_ace"]
+CMD ["cli", "10"]
