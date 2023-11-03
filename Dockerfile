@@ -9,6 +9,12 @@ ENV PYTHONFAULTHANDLER 1
 
 FROM base AS python-deps
 
+# Copy the Pipfile and Pipfile.lock into the container at /app
+COPY Pipfile Pipfile.lock /app/
+
+# Set the working directory to /app
+WORKDIR /app
+
 # Install pipenv and compilation dependencies
 RUN pip install pipenv
 RUN apt-get update && apt-get install -y --no-install-recommends gcc
