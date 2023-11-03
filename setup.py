@@ -15,7 +15,7 @@ setup(
         "transformers",
         "safetensors",
         "wandb",
-        "textattack"
+        "textattack",
     ],
     entry_points={
         "console_scripts": [
@@ -23,4 +23,3 @@ setup(
         ],
     },
 )
-    

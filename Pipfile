@@ -18,6 +18,7 @@ safetensors = "*"
 evaluate = "*"
 datasets = "*"
 garak = "*"
+types-setuptools = "*"
 
 [dev-packages]
 black = "==22.3.0"
