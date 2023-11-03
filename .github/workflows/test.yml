@@ -29,6 +29,7 @@ jobs:
 
   docker-image:
     runs-on: ubuntu-latest
+      - run: pipenv run pytest
     steps:
       - uses: actions/checkout@v2
 
