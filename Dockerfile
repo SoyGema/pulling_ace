@@ -28,7 +28,7 @@ RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 FROM base AS runtime
 
 # Copy virtual env from python-deps stage
-COPY --from=python-deps /.venv /.venv
+COPY --from=python-deps /app/.venv /app/.venv
 ENV PATH="/.venv/bin:$PATH"
 
 # Create and switch to a new user
