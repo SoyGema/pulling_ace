@@ -36,8 +36,6 @@ RUN useradd --create-home appuser
 WORKDIR /home/appuser
 USER appuser
 
-ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
-CMD ["10"]
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
