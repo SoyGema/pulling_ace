@@ -28,12 +28,21 @@ To get started with PullingAce, follow these steps:
 pip install pullingace
 
 ## Try
-pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
+### CLI Example
+```bash
+# Replace with a specific command for prompt injection
+pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
+```
 
 ```
 
 ## Credits
+
 ## Features for Generative Models
+
+- **Prompt Injection**: PullingAce integrates the prompt injection feature from the Garak library, allowing for more dynamic and flexible adversarial attacks.
+- **Toxicity Features**: PullingAce incorporates Garak's toxicity features, providing additional metrics for evaluating model robustness.
+- **Garak Integration**: By integrating features from the Garak library, PullingAce offers a wider range of attack strategies and evaluation metrics.
 =======
 ## Features for Generative Models
 
@@ -47,6 +56,16 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
 ```
 ## Features for Classification
+
+### CLI Example
+```bash
+pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
+```
+
+### How is PullingAce different from TextAttack?
+
+PullingAce uses built-in recipes from the TextAttack library but provides additional features and customizations.
+This package was created with Cookiecutter and the [sourcery-ai/python-best-practices-cookiecutter](https://github.com/sourcery-ai/python-best-practices-cookiecutter) project template.
 =======
 ## Features for Classification
 
