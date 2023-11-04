@@ -1,5 +1,9 @@
 # PullingAce: Benchmarking Robustness for LLM Models
 
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Code Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 > [!NOTE]
 > Repository under active construction
 
@@ -41,12 +45,6 @@ pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" 
 # Replace with a specific command for prompt injection
 pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" 
 ```
-
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Code Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
-=======
-# PullingAce: Benchmarking Robustness for LLM Models
 
 ## Installation
 
