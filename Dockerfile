@@ -11,7 +11,7 @@ FROM base AS python-deps
 
 # Copy the Pipfile and Pipfile.lock into the container at /app
 COPY Pipfile Pipfile.lock /app/
-
+COPY . /app
 # Set the working directory to /app
 WORKDIR /app
 
