@@ -13,6 +13,7 @@ FROM base AS python-deps
 COPY Pipfile Pipfile.lock /app/
 COPY . /app
 WORKDIR /app
+RUN pip install pipenv
 RUN pipenv install --deploy
 # Set the working directory to /app
 WORKDIR /app
