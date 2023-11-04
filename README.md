@@ -25,6 +25,19 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 
 ### CLI Example
 ```bash
+# Example command for prompt injection
+pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" --prompt "What is the capital of France?" 
+```
+
+
+## Features for Generative Models
+
+- **Prompt Injection**: PullingAce integrates the prompt injection feature from the Garak library. This feature allows for more dynamic and flexible adversarial attacks by injecting custom prompts into the model's input, potentially leading to unexpected and revealing responses.
+
+- **Toxicity**: PullingAce incorporates Garak's toxicity features, providing additional metrics for evaluating model robustness. This feature measures the level of offensive or harmful content in the model's output, providing a valuable metric for assessing the model's suitability for various applications.
+
+### CLI Example
+```bash
 # Replace with a specific command for prompt injection
 pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" 
 ```
