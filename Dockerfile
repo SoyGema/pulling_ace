@@ -5,7 +5,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONFAULTHANDLER 1
-
+ENV PATH="/app/.venv/bin:$PATH"
 
 FROM base AS python-deps
 
@@ -34,6 +34,9 @@ ENV PATH="/.venv/bin:$PATH"
 # Create and switch to a new user
 RUN useradd --create-home appuser
 WORKDIR /home/appuser
+COPY --from=python-deps /app/.venv /home/appuser/.venv
+RUN chown -R appuser:appuser /home/appuser/.venv
+
 USER appuser
 
 
