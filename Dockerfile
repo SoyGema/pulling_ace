@@ -12,6 +12,8 @@ FROM base AS python-deps
 # Copy the Pipfile and Pipfile.lock into the container at /app
 COPY Pipfile Pipfile.lock /app/
 COPY . /app
+WORKDIR /app
+RUN pipenv install --deploy
 # Set the working directory to /app
 WORKDIR /app
 
@@ -30,6 +32,7 @@ FROM base AS runtime
 
 # Copy virtual env from python-deps stage
 COPY --from=python-deps /app /app
+WORKDIR /app
 
 # Create and switch to a new user
 RUN useradd --create-home appuser
