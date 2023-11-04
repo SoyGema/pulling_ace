@@ -16,8 +16,9 @@ COPY . /app
 WORKDIR /app
 
 # Install pipenv and compilation dependencies
-RUN pip install pipenv
-RUN apt-get update && apt-get install -y --no-install-recommends gcc
+RUN pip install pipenv && \
+    apt-get update && apt-get install -y --no-install-recommends gcc && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
 CMD ["10"]
@@ -28,8 +29,7 @@ RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 FROM base AS runtime
 
 # Copy virtual env from python-deps stage
-COPY --from=python-deps /app/.venv /app/.venv
-ENV PATH="/.venv/bin:$PATH"
+COPY --from=python-deps /app /app
 
 # Create and switch to a new user
 RUN useradd --create-home appuser
