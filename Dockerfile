@@ -29,6 +29,8 @@ CMD ["cli","10"]
 COPY Pipfile.lock .
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
+# The entrypoint is set to 'python -m pulling_ace' and the default command is 'cli 10'
+
 
 FROM base AS runtime
 
