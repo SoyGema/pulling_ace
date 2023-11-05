@@ -12,18 +12,20 @@ FROM base AS python-deps
 # Copy the Pipfile and Pipfile.lock into the container at /app
 COPY Pipfile Pipfile.lock /app/
 COPY . /app
-WORKDIR /app
-RUN pipenv install --deploy
 # Set the working directory to /app
 WORKDIR /app
+
+# Copy the pulling_ace directory into the Docker image
+COPY pulling_ace /app/pulling_ace
 
 # Install pipenv and compilation dependencies
 RUN pip install pipenv && \
     apt-get update && apt-get install -y --no-install-recommends gcc && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
-CMD ["10"]
+ENV PYTHON /app
+ENTRYPOINT ["python", "-m", "pulling_ace"]
+CMD ["cli","10"]
 COPY Pipfile.lock .
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
@@ -32,7 +34,6 @@ FROM base AS runtime
 
 # Copy virtual env from python-deps stage
 COPY --from=python-deps /app /app
-WORKDIR /app
 
 # Create and switch to a new user
 RUN useradd --create-home appuser
@@ -44,5 +45,5 @@ USER appuser
 
 
 # Run the executable
-ENTRYPOINT ["python", "-m", "pulling_ace.cli"]
-CMD ["10"]
+ENTRYPOINT ["python", "-m", "pulling_ace"]
+CMD ["cli", "10"]
