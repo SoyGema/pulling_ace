@@ -28,6 +28,21 @@ Rebuild the Package: Navigate to the folder where your setup.py file is located 
 pip install .
 ```
 
+Check Installation: You can check if the package is installed correctly by running:
+
+```bash
+Copy code
+pip list
+```
+
+## Setup
+```sh
+# Install development dependencies. This includes all the packages required for development and testing.
+pipenv install --dev
+# Format the codebase using black before committing changes.
+pipenv run black .
+```
+
 Check Installation: You can check if the package is installed correctly by running the following command. This command lists all installed Python packages and should include PullingAce if the installation was successful.
 
 ```bash
