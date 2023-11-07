@@ -16,7 +16,7 @@ COPY . /app
 WORKDIR /app
 
 # Copy the pulling_ace directory into the Docker image
-COPY pulling_ace /app/pulling_ace
+COPY ./pulling_ace /app/pulling_ace
 
 # Install pipenv and compilation dependencies
 RUN pip install pipenv && \
