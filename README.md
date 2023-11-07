@@ -30,7 +30,7 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 ### CLI Example
 ```bash
 # Replace with a specific command for prompt injection
-pulling-ace-cli prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
+pullingace prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
 ```
 Notes : the probes must fit the PROBE_FAMILIES name defined in subprocessor.
 
@@ -65,7 +65,7 @@ pipenv install
 pip3 install .
 pip3 install garak (SEE WHY)
 ```
-Tested currently in main with pulling-ace-cli prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
+Tested currently in main with pullingace prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
 
 
 ```bash
