@@ -36,7 +36,7 @@ def main():
         results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
         print(results)
     elif args.command == "prompt_injection":
-        run_injections(args.model_type, args.model_name, args.probes)
+    run_injections(args.model_type, args.model_name, args.probes)
         promptinjection(args.model_type, args.model_name, args.probes)
 
     else:
