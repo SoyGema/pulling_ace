@@ -30,8 +30,9 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 ### CLI Example
 ```bash
 # Replace with a specific command for prompt injection
-pullingace --attack promptinjection --model "textattack/albert-base-v2-ag-news" 
+pullingace prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
 ```
+Notes : the probes must fit the PROBE_FAMILIES name defined in subprocessor.
 
 ## Installation
 
@@ -57,6 +58,15 @@ This package was created with Cookiecutter and the [sourcery-ai/python-best-prac
 
 This is right now intented to be a python library 
 Uninstall the Previous Version: If you have a previous version of the package installed, you can uninstall it first to avoid conflicts. You can use the following command for that:
+
+HAPPY PATH 
+```bash
+pipenv install
+pip3 install .
+pip3 install garak (SEE WHY)
+```
+Tested currently in main with pullingace prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
+
 
 ```bash
 pip uninstall pullingace
