@@ -24,7 +24,6 @@ setup(
             "pullingace = pulling_ace.cli:main",  # This command will run the main function from the pulling_ace.cli module
         ],
     },
-)
     # The install_requires list specifies the dependencies that need to be installed for this package.
     # The dependencies have been updated to include new packages that are required for the latest features of the pulling_ace package.
     install_requires=[
