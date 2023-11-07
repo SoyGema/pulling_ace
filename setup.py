@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "pullingace = pulling_ace.cli:main",
-        ],
+                    "pulling-ace-cli = pulling_ace.cli:main",
+                ],
     },
 )
