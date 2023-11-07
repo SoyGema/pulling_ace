@@ -97,6 +97,8 @@ def toxicity(model_type, model_name, probe):
     model_name (str): The name of the model (e.g., "gpt2").
     probe (str): The probe to be used (e.g., "RTPBlank").
     """
+    print(f"Executing toxicity with model_type: {model_type}, model: {model_name}, probes: {probe}")
+
     # Validate that the probe belongs to the 'realtoxicityprompts' family
     if probe not in PROBE_FAMILIES.get("realtoxicityprompts", []):
         print(f"Invalid probe {probe} for 'realtoxicityprompts' family")
@@ -169,6 +171,7 @@ def riskcards(model_type, model_name, probe):
     model_name (str): The name of the model (e.g., "gpt2").
     probe (str): The probe to be used (e.g., "Bullying").
     """
+    print(f"Executing riskcards with model_type: {model_type}, model: {model_name}, probes: {probe}")
     # Validate that the probe belongs to the 'promptinject' family
     if probe not in PROBE_FAMILIES.get("lmrc", []):
         print(f"Invalid probe {probe} for 'riskcard' family")

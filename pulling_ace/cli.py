@@ -61,12 +61,17 @@ def main():
     elif args.command == "prompt_injection":
         promptinjection(args.model_type, args.model_name, args.probes)
     elif args.command == "riskcards":
-        riskcards(args.model_type, args.model_name, args.probes)
-    elif args.command == "toxicity":
-        toxicity(args.model_type, args.model_name, args.probes)
-    else:
-        print("Invalid command")
+        riskcards(args.model_type, args.model, args.probes)
+        run_injections(args.model_type, args.model, "lmrc")
 
+    # ... (handle other subcommands)
+    else:
+        print("Invalid command or no command specified")
 
 if __name__ == "__main__":
     main()
+
+
+
+
+

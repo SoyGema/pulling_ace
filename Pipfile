@@ -11,7 +11,7 @@ flake8 = "*"
 mypy = "*"
 pytest = "*"
 accelerate = "*"
-transformers = "*"
+transformers = {extras = ["torch"], version = "*"}
 wandb = "*"
 torch = "*"
 safetensors = "*"
@@ -19,6 +19,7 @@ evaluate = "*"
 datasets = "*"
 garak = "*"
 types-setuptools = "*"
+pulling-ace = {file = "."}
 
 [dev-packages]
 black = "==22.3.0"
