@@ -69,13 +69,23 @@ def main():
         
             # New parser for subprocessor
             subprocess_parser = subparsers.add_parser("prompt_injection")
+            # New parser for subprocessor
+            # This parser is used to handle the "prompt_injection" command, which requires the "model_type", "model_name", and "probes" arguments.
+            subprocess_parser = subparsers.add_parser("prompt_injection")
+        if __name__ == "__main__":
+        main()
+        =======
             subprocess_parser.add_argument(
                 "--model_type", type=str, required=True, help="Model type for subprocessor"
             )
             subprocess_parser.add_argument(
-            # New parser for subprocessor
-            subprocess_parser = subparsers.add_parser("prompt_injection")
-        =======
+                "--model_name", type=str, required=True, help="Model name for subprocessor"
+            )
+            subprocess_parser.add_argument(
+                "--probes", type=str, required=True, help="Probes for subprocessor"
+            )
+        if __name__ == "__main__":
+        main()
             # New parser for subprocessor
             # This parser is used to handle the "prompt_injection" command, which requires the "model_type", "model_name", and "probes" arguments.
             subprocess_parser = subparsers.add_parser("prompt_injection")
