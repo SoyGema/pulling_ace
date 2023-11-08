@@ -30,7 +30,7 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 ### CLI Example
 ```bash
 # Replace with a specific command for prompt injection
-pullingace prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes promptinject
+pullingace prompt_injection --model_type huggingface --model_name "amazon/MistralLite" --probes HijackHateHumans
 ```
 Notes : the probes must fit the PROBE_FAMILIES name defined in subprocessor.
 
