@@ -1,5 +1,6 @@
 import multiprocessing
 import subprocess
+import time
 
 PROBE_FAMILIES = {
     "art": ["Tox"],
@@ -187,7 +188,16 @@ def run_injections(model_type, model_name, probe_family):
                 }
                 for probe in PROBE_FAMILIES.get("promptinject", [])
             ]
-            pool.map(promptinjection_wrapper, args_list)
+            start_time = time.time()
+
+            print(f"Starting probe injections for {probe_family}")
+            results = pool.map(promptinjection_wrapper, args_list)
+            end_time = time.time()
+
+            print(f"Completed probe injections for {probe_family}")
+            print(f"Probe injection took {end_time - start_time} seconds.")
+
+
 
         elif probe_family == "realtoxicityprompts":
             args_list = [
@@ -198,6 +208,7 @@ def run_injections(model_type, model_name, probe_family):
                 }
                 for probe in PROBE_FAMILIES.get("realtoxicityprompts", [])
             ]
-            pool.map(toxicity_wrapper, args_list)
+            results = pool.map(toxicity_wrapper, args_list)
         else:
             print(f"Invalid probe family '{probe_family}' selected.")
+    return results
