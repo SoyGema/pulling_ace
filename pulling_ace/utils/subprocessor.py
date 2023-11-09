@@ -255,11 +255,11 @@ def run_injections(model_type, model_name, probe_family):
         else:
             print(f"Invalid probe family '{probe_family}' selected.")
         if __name__ == "__main__":
-        # Example usage of the functions
-        model_type = "huggingface"
-        model_name = "gpt2"
-        probe_family = "promptinject"
-        
-        # Run injections
-        run_injections(model_type, model_name, probe_family)
+            # Example usage of the functions
+            model_type = "huggingface"
+            model_name = "gpt2"
+            probe_family = "promptinject"
+            
+            # Run injections
+            run_injections(model_type, model_name, probe_family)
 
