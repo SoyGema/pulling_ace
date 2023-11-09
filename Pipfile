@@ -20,6 +20,8 @@ datasets = "*"
 garak = "*"
 types-setuptools = "*"
 pulling-ace = {file = "."}
+click = "*"
+tqdm = "*"
 
 [dev-packages]
 black = "==22.3.0"

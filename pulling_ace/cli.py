@@ -1,7 +1,6 @@
 # inside cli.py
-
+import sys
 import argparse
-import click
 from .attacks.tomato_attack import perform_tomato_attack
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
@@ -63,12 +62,8 @@ def main():
     if args.attack == "tomato":
         results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
         print(results)
-    elif args.command == "prompt_injection":
-        promptinjection(args.model_type, args.model_name, args.probes)
-    #if args.command == "tomato":
-        #results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
-        #print(results)
-    if args.command == "promptinjection":
+
+    elif args.command == "promptinjection":
         promptinjection(args.model_type, args.model_name, args.probes)
         #run_injections(args.model_type, args.model, "promptinject")
 
@@ -77,17 +72,19 @@ def main():
         #run_injections(args.model_type, args.model, "realtoxicityprompts")
 
     elif args.command == "riskcards":
-        riskcards(args.model_type, args.model, args.probes)
+        riskcards(args.model_type, args.model_name, args.probes)
         #run_injections(args.model_type, args.model, "lmrc")
 
     # ... (handle other subcommands)
     else:
         print("Invalid command or no command specified")
-        print("Invalid command or no command specified")
 
+print("Script has started")
 if __name__ == "__main__":
-    cli_command()
+    #cli_command()
+    print("Starting the process... ♠️")
     main()
+    print("Process finished! ♠️")
 
 
 
