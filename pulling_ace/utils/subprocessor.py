@@ -252,13 +252,6 @@ def run_injections(model_type, model_name, probe_family):
     model_name (str): The name of the model (e.g., "gpt2").
     probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
     """
-    Run the probes based on the specified probe family.
-
-    Parameters:
-    model_type (str): The type of the model (e.g., "huggingface").
-    model_name (str): The name of the model (e.g., "gpt2").
-    probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
-    """
     with multiprocessing.Pool() as pool:
         # If the probe family is 'promptinject', run the 'promptinjection' function for each probe in the family
         if probe_family == "promptinject":
