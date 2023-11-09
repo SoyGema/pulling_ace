@@ -3,7 +3,7 @@
 import argparse
 
 from .attacks.tomato_attack import perform_tomato_attack
-from .utils.subprocessor import promptinjection, run_injections
+from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 
 
 def main():
@@ -37,8 +37,15 @@ def main():
         print(results)
     elif args.command == "prompt_injection":
         promptinjection(args.model_type, args.model_name, args.probes)
+<<<<<<< HEAD
         #run_injections(args.model_type, args.model_name, args.probes)
 
+=======
+    elif args.command == "riskcards":
+        riskcards(args.model_type, args.model_name, args.probes)
+    elif args.command == "toxicity":
+        toxicity(args.model_type, args.model_name, args.probes)
+>>>>>>> bca2749 (riskcards implementation)
     else:
         print("Invalid command")
 
