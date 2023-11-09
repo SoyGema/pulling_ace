@@ -29,23 +29,41 @@ def main():
         "--probes", type=str, required=True, help="Probes for subprocessor"
     )
 
+    subprocess_parser = subparsers.add_parser("riskcards")
+    subprocess_parser.add_argument(
+        "--model_type", type=str, required=True, help="Model type for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--model_name", type=str, required=True, help="Model name for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--probes", type=str, required=True, help="Probes for subprocessor"
+    )
+
+    subprocess_parser = subparsers.add_parser("toxicity")
+    subprocess_parser.add_argument(
+        "--model_type", type=str, required=True, help="Model type for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--model_name", type=str, required=True, help="Model name for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--probes", type=str, required=True, help="Probes for subprocessor"
+    )
+
     args = parser.parse_args()
-    
+
+    #run_injections(args.model_type, args.model_name, args.probe_family)
 
     if args.attack == "tomato":
         results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
         print(results)
     elif args.command == "prompt_injection":
         promptinjection(args.model_type, args.model_name, args.probes)
-<<<<<<< HEAD
-        #run_injections(args.model_type, args.model_name, args.probes)
-
-=======
     elif args.command == "riskcards":
         riskcards(args.model_type, args.model_name, args.probes)
     elif args.command == "toxicity":
         toxicity(args.model_type, args.model_name, args.probes)
->>>>>>> bca2749 (riskcards implementation)
     else:
         print("Invalid command")
 

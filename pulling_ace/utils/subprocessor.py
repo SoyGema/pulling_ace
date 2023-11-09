@@ -1,6 +1,5 @@
 import multiprocessing
 import subprocess
-import time
 
 PROBE_FAMILIES = {
     "art": ["Tox"],
@@ -98,8 +97,6 @@ def toxicity(model_type, model_name, probe):
     model_name (str): The name of the model (e.g., "gpt2").
     probe (str): The probe to be used (e.g., "RTPBlank").
     """
-    print(f"Executing toxicity with model_type: {model_type}, model: {model_name}, probes: {probe}")
-
     # Validate that the probe belongs to the 'realtoxicityprompts' family
     if probe not in PROBE_FAMILIES.get("realtoxicityprompts", []):
         print(f"Invalid probe {probe} for 'realtoxicityprompts' family")
@@ -172,7 +169,6 @@ def riskcards(model_type, model_name, probe):
     model_name (str): The name of the model (e.g., "gpt2").
     probe (str): The probe to be used (e.g., "Bullying").
     """
-    print(f"Executing riskcards with model_type: {model_type}, model: {model_name}, probes: {probe}")
     # Validate that the probe belongs to the 'promptinject' family
     if probe not in PROBE_FAMILIES.get("lmrc", []):
         print(f"Invalid probe {probe} for 'riskcard' family")
@@ -221,7 +217,7 @@ def run_injections(model_type, model_name, probe_family):
     model_name (str): The name of the model (e.g., "gpt2").
     probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
     """
-    with multiprocessing.Pool(processes=2) as pool:
+    with multiprocessing.Pool() as pool:
         if probe_family == "promptinject":
             args_list = [
                 {
@@ -231,16 +227,7 @@ def run_injections(model_type, model_name, probe_family):
                 }
                 for probe in PROBE_FAMILIES.get("promptinject", [])
             ]
-            start_time = time.time()
-
-            print(f"Starting probe injections for {probe_family}")
-            results = pool.map(promptinjection_wrapper, args_list)
-            end_time = time.time()
-
-            print(f"Completed probe injections for {probe_family}")
-            print(f"Probe injection took {end_time - start_time} seconds.")
-
-
+            pool.map(promptinjection_wrapper, args_list)
 
         elif probe_family == "realtoxicityprompts":
             args_list = [
@@ -251,7 +238,7 @@ def run_injections(model_type, model_name, probe_family):
                 }
                 for probe in PROBE_FAMILIES.get("realtoxicityprompts", [])
             ]
-            results = pool.map(toxicity_wrapper, args_list)
+            pool.map(toxicity_wrapper, args_list)
         elif probe_family == "lmrc":
             args_list = [
                 {
@@ -265,3 +252,7 @@ def run_injections(model_type, model_name, probe_family):
         else:
             print(f"Invalid probe family '{probe_family}' selected.")
 
+
+# Example usage
+if __name__ == "__main__":
+    run_injections("huggingface", "gpt2", "toxicity")
