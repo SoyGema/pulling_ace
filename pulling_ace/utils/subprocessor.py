@@ -1,6 +1,5 @@
 import multiprocessing
 import subprocess
-import time
 
 PROBE_FAMILIES = {
     "art": ["Tox"],
@@ -98,6 +97,8 @@ def toxicity(model_type, model_name, probe):
     model_name (str): The name of the model (e.g., "gpt2").
     probe (str): The probe to be used (e.g., "RTPBlank").
     """
+    print(f"Executing toxicity with model_type: {model_type}, model: {model_name}, probes: {probe}")
+
     # Validate that the probe belongs to the 'realtoxicityprompts' family
     if probe not in PROBE_FAMILIES.get("realtoxicityprompts", []):
         print(f"Invalid probe {probe} for 'realtoxicityprompts' family")
@@ -161,6 +162,47 @@ def promptinjection(model_type, model_name, probe):
         print(f"Failed to execute command. Error: {e}")
 
 
+def riskcards(model_type, model_name, probe):
+    """
+    Run the Garak tool with LanguageModels RiskCards using specified probes from the 'lmrc' family.
+
+    Parameters:
+    model_type (str): The type of the model (e.g., "huggingface").
+    model_name (str): The name of the model (e.g., "gpt2").
+    probe (str): The probe to be used (e.g., "Bullying").
+    """
+    print(f"Executing riskcards with model_type: {model_type}, model: {model_name}, probes: {probe}")
+    # Validate that the probe belongs to the 'promptinject' family
+    if probe not in PROBE_FAMILIES.get("lmrc", []):
+        print(f"Invalid probe {probe} for 'riskcard' family")
+        return
+
+    command = [
+        "python3",
+        "-m",
+        "garak",
+        "--model_type",
+        model_type,
+        "--model_name",
+        model_name,
+        "--probes",
+        f"lmrc.{probe}",
+    ]
+
+    try:
+        completed_process = subprocess.run(
+            command, check=True, capture_output=True, text=True
+        )
+        print("Return code:", completed_process.returncode)
+        print("Standard Output:\n{}".format(completed_process.stdout))
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to execute command. Error: {e}")
+
+
+def riskcard_wrapper(args):
+    return riskcards(args["model_type"], args["model_name"], args["probe"])
+
+
 def promptinjection_wrapper(args):
     return promptinjection(args["model_type"], args["model_name"], args["probe"])
 
@@ -178,7 +220,7 @@ def run_injections(model_type, model_name, probe_family):
     model_name (str): The name of the model (e.g., "gpt2").
     probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
     """
-    with multiprocessing.Pool(processes=2) as pool:
+    with multiprocessing.Pool() as pool:
         if probe_family == "promptinject":
             args_list = [
                 {
@@ -188,16 +230,7 @@ def run_injections(model_type, model_name, probe_family):
                 }
                 for probe in PROBE_FAMILIES.get("promptinject", [])
             ]
-            start_time = time.time()
-
-            print(f"Starting probe injections for {probe_family}")
-            results = pool.map(promptinjection_wrapper, args_list)
-            end_time = time.time()
-
-            print(f"Completed probe injections for {probe_family}")
-            print(f"Probe injection took {end_time - start_time} seconds.")
-
-
+            pool.map(promptinjection_wrapper, args_list)
 
         elif probe_family == "realtoxicityprompts":
             args_list = [
@@ -208,7 +241,21 @@ def run_injections(model_type, model_name, probe_family):
                 }
                 for probe in PROBE_FAMILIES.get("realtoxicityprompts", [])
             ]
-            results = pool.map(toxicity_wrapper, args_list)
+            pool.map(toxicity_wrapper, args_list)
+        elif probe_family == "lmrc":
+            args_list = [
+                {
+                    "model_type": model_type,
+                    "model_name": model_name,
+                    "probe": probe,
+                }
+                for probe in PROBE_FAMILIES.get("lmrc", [])
+            ]
+            pool.map(toxicity_wrapper, args_list)
         else:
             print(f"Invalid probe family '{probe_family}' selected.")
-    return results
+
+
+# Example usage
+if __name__ == "__main__":
+    run_injections("huggingface", "gpt2", "toxicity")
