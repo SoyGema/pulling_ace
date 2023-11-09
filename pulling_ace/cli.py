@@ -1,6 +1,10 @@
 # inside cli.py
 import sys
 import argparse
+<<<<<<< HEAD
+=======
+import click
+>>>>>>> 5437eee2d85e1f86d2c552587999f4efa0ef86e7
 from .attacks.tomato_attack import perform_tomato_attack
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
@@ -81,8 +85,12 @@ def main():
 
 print("Script has started")
 if __name__ == "__main__":
+<<<<<<< HEAD
     #cli_command()
     print("Starting the process... ♠️")
+=======
+    cli_command()
+>>>>>>> 5437eee2d85e1f86d2c552587999f4efa0ef86e7
     main()
     print("Process finished! ♠️")
 
