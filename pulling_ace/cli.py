@@ -60,9 +60,20 @@ def main():
         print(results)
     elif args.command == "prompt_injection":
         promptinjection(args.model_type, args.model_name, args.probes)
+    #if args.command == "tomato":
+        #results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
+        #print(results)
+    if args.command == "promptinjection":
+        promptinjection(args.model_type, args.model, args.probes)
+        #run_injections(args.model_type, args.model, "promptinject")
+
+    elif args.command == "toxicity":
+        toxicity(args.model_type, args.model, args.probes)
+        #run_injections(args.model_type, args.model, "realtoxicityprompts")
+
     elif args.command == "riskcards":
         riskcards(args.model_type, args.model, args.probes)
-        run_injections(args.model_type, args.model, "lmrc")
+        #run_injections(args.model_type, args.model, "lmrc")
 
     # ... (handle other subcommands)
     else:
