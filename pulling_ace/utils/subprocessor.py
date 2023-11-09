@@ -224,6 +224,8 @@ def leakreplay(model_type, model_name, probe):
         model_name,
         "--probes",
         f"leakreplay.{probe}",
+        "--generations",
+        f"5",
     ]
 
     try:
