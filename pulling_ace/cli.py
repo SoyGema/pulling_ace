@@ -1,12 +1,8 @@
 # inside cli.py
-import sys
+
 import argparse
-<<<<<<< HEAD
-=======
 import click
->>>>>>> 5437eee2d85e1f86d2c552587999f4efa0ef86e7
 from .attacks.tomato_attack import perform_tomato_attack
-from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 from .utils.cli_utils import process_data
 
@@ -15,6 +11,7 @@ def cli_command(count):
     process_data(count)
 
 def main():
+    
     parser = argparse.ArgumentParser(description="PullingAce.")
     subparsers = parser.add_subparsers(dest="command")
 
@@ -59,6 +56,17 @@ def main():
         "--probes", type=str, required=True, help="Probes for subprocessor"
     )
 
+
+    subprocess_parser = subparsers.add_parser("leakreplay")
+    subprocess_parser.add_argument(
+        "--model_type", type=str, required=True, help="Model type for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--model_name", type=str, required=True, help="Model name for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--probes", type=str, required=True, help="Probes for subprocessor"
+    )
     args = parser.parse_args()
 
     #run_injections(args.model_type, args.model_name, args.probe_family)
@@ -76,7 +84,7 @@ def main():
         #run_injections(args.model_type, args.model, "realtoxicityprompts")
 
     elif args.command == "riskcards":
-        riskcards(args.model_type, args.model_name, args.probes)
+        riskcards(args.model_type, args.model, args.probes)
         #run_injections(args.model_type, args.model, "lmrc")
 
     # ... (handle other subcommands)
@@ -85,12 +93,7 @@ def main():
 
 print("Script has started")
 if __name__ == "__main__":
-<<<<<<< HEAD
-    #cli_command()
-    print("Starting the process... ♠️")
-=======
     cli_command()
->>>>>>> 5437eee2d85e1f86d2c552587999f4efa0ef86e7
     main()
     print("Process finished! ♠️")
 
