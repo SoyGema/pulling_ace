@@ -90,20 +90,29 @@ PROBE_FAMILIES = {
 
 def toxicity(model_type, model_name, probe):
     """
-    Run the Garak tool with probes from the 'realtoxicityprompts' family.
+    This function runs the Garak tool with probes from the 'realtoxicityprompts' family. It first validates that the probe belongs to the 'realtoxicityprompts' family. If the validation is successful, it constructs a command to run the Garak tool and executes it using the subprocess module.
 
     Parameters:
     model_type (str): The type of the model (e.g., "huggingface").
     model_name (str): The name of the model (e.g., "gpt2").
     probe (str): The probe to be used (e.g., "RTPBlank").
     """
-    print(f"Executing toxicity with model_type: {model_type}, model: {model_name}, probes: {probe}")
-
-    # Validate that the probe belongs to the 'realtoxicityprompts' family
+    def run_injections(model_type, model_name, probe_family):
+        """
+        This function runs the probes based on the specified probe family. It uses the multiprocessing module to run the probes in parallel.
+    
+        Parameters:
+        model_type (str): The type of the model (e.g., "huggingface").
+        model_name (str): The name of the model (e.g., "gpt2").
+        probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
+        """
+        # Create a multiprocessing pool
+        with multiprocessing.Pool() as pool:
     if probe not in PROBE_FAMILIES.get("realtoxicityprompts", []):
         print(f"Invalid probe {probe} for 'realtoxicityprompts' family")
         return
 
+    # Construct the command to run the Garak tool
     command = [
         "python3",
         "-m",
@@ -116,6 +125,7 @@ def toxicity(model_type, model_name, probe):
         f"realtoxicityprompts.{probe}",
     ]
 
+    # Execute the command and capture the output
     try:
         completed_process = subprocess.run(
             command, check=True, capture_output=True, text=True
@@ -128,7 +138,7 @@ def toxicity(model_type, model_name, probe):
 
 def promptinjection(model_type, model_name, probe):
     """
-    Run the Garak tool with prompt injection using specified probes from the 'promptinject' family.
+    This function runs the Garak tool with prompt injection using specified probes from the 'promptinject' family. It first validates that the probe belongs to the 'promptinject' family. If the validation is successful, it constructs a command to run the Garak tool and executes it using the subprocess module.
 
     Parameters:
     model_type (str): The type of the model (e.g., "huggingface").
@@ -140,6 +150,7 @@ def promptinjection(model_type, model_name, probe):
         print(f"Invalid probe {probe} for 'promptinject' family")
         return
 
+    # Construct the command to run the Garak tool
     command = [
         "python3",
         "-m",
@@ -152,6 +163,7 @@ def promptinjection(model_type, model_name, probe):
         f"promptinject.{probe}",
     ]
 
+    # Execute the command and capture the output
     try:
         completed_process = subprocess.run(
             command, check=True, capture_output=True, text=True
@@ -164,7 +176,7 @@ def promptinjection(model_type, model_name, probe):
 
 def riskcards(model_type, model_name, probe):
     """
-    Run the Garak tool with LanguageModels RiskCards using specified probes from the 'lmrc' family.
+    This function runs the Garak tool with LanguageModels RiskCards using specified probes from the 'lmrc' family. It first validates that the probe belongs to the 'lmrc' family. If the validation is successful, it constructs a command to run the Garak tool and executes it using the subprocess module.
 
     Parameters:
     model_type (str): The type of the model (e.g., "huggingface").
@@ -177,6 +189,7 @@ def riskcards(model_type, model_name, probe):
         print(f"Invalid probe {probe} for 'riskcard' family")
         return
 
+    # Construct the command to run the Garak tool
     command = [
         "python3",
         "-m",
@@ -189,6 +202,7 @@ def riskcards(model_type, model_name, probe):
         f"lmrc.{probe}",
     ]
 
+    # Execute the command and capture the output
     try:
         completed_process = subprocess.run(
             command, check=True, capture_output=True, text=True
@@ -200,18 +214,43 @@ def riskcards(model_type, model_name, probe):
 
 
 def riskcard_wrapper(args):
+    """
+    This function is a wrapper for the 'riskcards' function. It takes a dictionary of arguments and passes them to the 'riskcards' function.
+
+    Parameters:
+    args (dict): A dictionary containing the arguments for the 'riskcards' function.
+    """
     return riskcards(args["model_type"], args["model_name"], args["probe"])
 
 
 def promptinjection_wrapper(args):
+    """
+    This function is a wrapper for the 'promptinjection' function. It takes a dictionary of arguments and passes them to the 'promptinjection' function.
+
+    Parameters:
+    args (dict): A dictionary containing the arguments for the 'promptinjection' function.
+    """
     return promptinjection(args["model_type"], args["model_name"], args["probe"])
 
 
 def toxicity_wrapper(args):
+    """
+    This function is a wrapper for the 'toxicity' function. It takes a dictionary of arguments and passes them to the 'toxicity' function.
+
+    Parameters:
+    args (dict): A dictionary containing the arguments for the 'toxicity' function.
+    """
     return toxicity(args["model_type"], args["model_name"], args["probe"])
 
 
 def run_injections(model_type, model_name, probe_family):
+    """
+    This function runs the probes based on the specified probe family. It uses the multiprocessing module to run the probes in parallel.
+
+    Parameters:
+    model_type (str): The type of the model (e.g., "huggingface").
+    model_name (str): The name of the model (e.g., "gpt2").
+    probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
     """
     Run the probes based on the specified probe family.
 
@@ -221,6 +260,7 @@ def run_injections(model_type, model_name, probe_family):
     probe_family (str): The family of the probes to be run (e.g., "promptinject" or "realtoxicityprompts").
     """
     with multiprocessing.Pool() as pool:
+        # If the probe family is 'promptinject', run the 'promptinjection' function for each probe in the family
         if probe_family == "promptinject":
             args_list = [
                 {
@@ -232,6 +272,7 @@ def run_injections(model_type, model_name, probe_family):
             ]
             pool.map(promptinjection_wrapper, args_list)
 
+        # If the probe family is 'realtoxicityprompts', run the 'toxicity' function for each probe in the family
         elif probe_family == "realtoxicityprompts":
             args_list = [
                 {
