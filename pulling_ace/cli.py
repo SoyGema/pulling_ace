@@ -40,15 +40,15 @@ def main():
         #print(results)
     if args.command == "promptinjection":
         promptinjection(args.model_type, args.model, args.probes)
-        run_injections(args.model_type, args.model, "promptinject")
+        #run_injections(args.model_type, args.model, "promptinject")
 
     elif args.command == "toxicity":
         toxicity(args.model_type, args.model, args.probes)
-        run_injections(args.model_type, args.model, "realtoxicityprompts")
+        #run_injections(args.model_type, args.model, "realtoxicityprompts")
 
     elif args.command == "riskcards":
         riskcards(args.model_type, args.model, args.probes)
-        run_injections(args.model_type, args.model, "lmrc")
+        #run_injections(args.model_type, args.model, "lmrc")
 
     # ... (handle other subcommands)
     else:
