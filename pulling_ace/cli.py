@@ -4,6 +4,7 @@ import argparse
 
 from .attacks.tomato_attack import perform_tomato_attack
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
+from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 
 
 def main():
@@ -78,9 +79,15 @@ def main():
     # ... (handle other subcommands)
     else:
         print("Invalid command or no command specified")
+        print("Invalid command or no command specified")
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
 
 
 
