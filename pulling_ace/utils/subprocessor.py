@@ -196,7 +196,7 @@ def riskcards(model_type, model_name, probe):
         print("Return code:", completed_process.returncode)
         print("Standard Output:\n{}".format(completed_process.stdout))
     except subprocess.CalledProcessError as e:
-        print(f"Failed to execute command. Error: {e}")
+    print(f"Failed to execute command. Error: {e}")
 
 
 def leakreplay(model_type, model_name, probe):
@@ -235,18 +235,17 @@ def leakreplay(model_type, model_name, probe):
         print("Return code:", completed_process.returncode)
         print("Standard Output:\n{}".format(completed_process.stdout))
     except subprocess.CalledProcessError as e:
-        print(f"Failed to execute command. Error: {e}")
+    print(f"Failed to execute command. Error: {e}")
 
 def riskcard_wrapper(args):
     return riskcards(args["model_type"], args["model_name"], args["probe"])
 
-
 def promptinjection_wrapper(args):
     return promptinjection(args["model_type"], args["model_name"], args["probe"])
 
-
 def toxicity_wrapper(args):
     return toxicity(args["model_type"], args["model_name"], args["probe"])
+
 
 def leakreplay_wrapper(args):
     return toxicity(args["model_type"], args["model_name"], args["probe"])
