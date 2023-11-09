@@ -1,11 +1,15 @@
 # inside cli.py
 
 import argparse
-
+import click
 from .attacks.tomato_attack import perform_tomato_attack
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
+from .utils.cli_utils import process_data
 
+def cli_command(count):
+    """CLI command to process data and display progress."""
+    process_data(count)
 
 def main():
     parser = argparse.ArgumentParser(description="PullingAce.")
@@ -82,6 +86,7 @@ def main():
         print("Invalid command or no command specified")
 
 if __name__ == "__main__":
+    cli_command()
     main()
 
 
