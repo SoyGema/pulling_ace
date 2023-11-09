@@ -65,11 +65,11 @@ def main():
         #results = perform_tomato_attack(args.model, args.dataset, args.num_examples)
         #print(results)
     if args.command == "promptinjection":
-        promptinjection(args.model_type, args.model, args.probes)
+        promptinjection(args.model_type, args.model_name, args.probes)
         #run_injections(args.model_type, args.model, "promptinject")
 
     elif args.command == "toxicity":
-        toxicity(args.model_type, args.model, args.probes)
+        toxicity(args.model_type, args.model_name, args.probes)
         #run_injections(args.model_type, args.model, "realtoxicityprompts")
 
     elif args.command == "riskcards":
