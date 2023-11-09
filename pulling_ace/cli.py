@@ -4,7 +4,7 @@ import argparse
 
 from .attacks.tomato_attack import perform_tomato_attack
 from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
-from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity
+from .utils.subprocessor import promptinjection, run_injections, riskcards, toxicity , leakreplay
 
 
 def main():
@@ -52,6 +52,17 @@ def main():
         "--probes", type=str, required=True, help="Probes for subprocessor"
     )
 
+
+    subprocess_parser = subparsers.add_parser("leakreplay")
+    subprocess_parser.add_argument(
+        "--model_type", type=str, required=True, help="Model type for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--model_name", type=str, required=True, help="Model name for subprocessor"
+    )
+    subprocess_parser.add_argument(
+        "--probes", type=str, required=True, help="Probes for subprocessor"
+    )
     args = parser.parse_args()
 
     #run_injections(args.model_type, args.model_name, args.probe_family)
@@ -73,7 +84,11 @@ def main():
         #run_injections(args.model_type, args.model, "realtoxicityprompts")
 
     elif args.command == "riskcards":
-        riskcards(args.model_type, args.model, args.probes)
+        riskcards(args.model_type, args.model_name, args.probes)
+        #run_injections(args.model_type, args.model, "lmrc")
+
+    elif args.command == "leakreplay":
+        leakreplay(args.model_type, args.model_name, args.probes)
         #run_injections(args.model_type, args.model, "lmrc")
 
     # ... (handle other subcommands)
