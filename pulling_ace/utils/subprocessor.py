@@ -213,6 +213,44 @@ def riskcards(model_type, model_name, probe):
         print(f"Failed to execute command. Error: {e}")
 
 
+def leakreplay(model_type, model_name, probe):
+    """
+    Run the Garak tool with LanguageModels RiskCards using specified probes from the 'leakreplay' family.
+
+    Parameters:
+    model_type (str): The type of the model (e.g., "huggingface").
+    model_name (str): The name of the model (e.g., "gpt2").
+    probe (str): The probe to be used (e.g., "Bullying").
+    """
+    print(f"Executing riskcards with model_type: {model_type}, model: {model_name}, probes: {probe}")
+    # Validate that the probe belongs to the 'promptinject' family
+    if probe not in PROBE_FAMILIES.get("leakreplay", []):
+        print(f"Invalid probe {probe} for 'leakreplay' family")
+        return
+
+    command = [
+        "python3",
+        "-m",
+        "garak",
+        "--model_type",
+        model_type,
+        "--model_name",
+        model_name,
+        "--probes",
+        f"leakreplay.{probe}",
+        "--generations",
+        f"5",
+    ]
+
+    try:
+        completed_process = subprocess.run(
+            command, check=True, capture_output=True, text=True
+        )
+        print("Return code:", completed_process.returncode)
+        print("Standard Output:\n{}".format(completed_process.stdout))
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to execute command. Error: {e}")
+
 def riskcard_wrapper(args):
     """
     This function is a wrapper for the 'riskcards' function. It takes a dictionary of arguments and passes them to the 'riskcards' function.
@@ -242,6 +280,8 @@ def toxicity_wrapper(args):
     """
     return toxicity(args["model_type"], args["model_name"], args["probe"])
 
+def leakreplay_wrapper(args):
+    return toxicity(args["model_type"], args["model_name"], args["probe"])
 
 def run_injections(model_type, model_name, probe_family):
     """
@@ -274,6 +314,16 @@ def run_injections(model_type, model_name, probe_family):
                     "probe": probe,
                 }
                 for probe in PROBE_FAMILIES.get("realtoxicityprompts", [])
+            ]
+            pool.map(toxicity_wrapper, args_list)
+        elif probe_family == "leakreplay":
+            args_list = [
+                {
+                    "model_type": model_type,
+                    "model_name": model_name,
+                    "probe": probe,
+                }
+                for probe in PROBE_FAMILIES.get("leakreplay", [])
             ]
             pool.map(toxicity_wrapper, args_list)
         elif probe_family == "lmrc":
