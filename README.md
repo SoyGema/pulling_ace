@@ -17,7 +17,7 @@ PullingAce is a Python library designed to benchmark adversarial attacks on Hugg
 
 ### CLI Example
 ```bash
-pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
+pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 10
 ```
 
 
@@ -50,12 +50,13 @@ Notes : the probes must fit the PROBE_FAMILIES name defined in subprocessor.
 
 To get started with PullingAce, follow these steps:
 
+- Create virtual environment
 - Clone the repository: `git clone https://github.com/<username>/pullingace.git`
 - Navigate to the root directory: `cd pullingace`
 - Install the package using pip:
 
 ```bash
-pip install pullingace
+pip install .
 
 ## Try
 pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset "ag_news" --num-examples 5
