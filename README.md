@@ -27,6 +27,18 @@ pullingace --attack tomato --model "textattack/albert-base-v2-ag-news" --dataset
 
 - **Toxicity**: PullingAce incorporates Garak's toxicity features, providing additional metrics for evaluating model robustness.
 
+- **Risk Cards**: This framework gives a large set of risks that might present in
+LM deployment. Risks can affect a variety of actors in a variety
+of ways. The set of risks is large, but not all risks apply in
+all scenarios - and so not all lmrc probes will be relevant to 
+every system.
+
+- **Leak Replay** : Integrates probes for evaluating if a model will replay training data.
+
+## Reports 
+
+Creates an html report that analyzes the attack
+
 ### CLI Example
 ```bash
 # Replace with a specific command for prompt injection
