@@ -7,6 +7,10 @@
 > [!NOTE]
 > Repository under active construction
 
+
+https://github.com/SoyGema/pulling_ace/assets/24204714/9c1edbf6-2949-43c6-805e-c9d6995d78aa
+
+
 PullingAce is a Python library designed to benchmark adversarial attacks on Hugging Face models. Built on top of TextAttack and Garak, PullingAce incorporates a set of recipes and attacks to assess the robustness of various natural language processing models in classification and generation taks. This tool provides a comprehensive evaluation of model vulnerabilities and helps researchers and practitioners in the field of machine learning understand the strengths and weaknesses of different models.
 
 ## Features for Classification
