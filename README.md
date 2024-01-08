@@ -7,6 +7,8 @@
 > [!NOTE]
 > Repository under active construction
 
+<img width="764" alt="Captura de pantalla 2024-01-08 a las 15 07 17" src="https://github.com/SoyGema/pulling_ace/assets/24204714/77f7bdab-edb8-4925-8ca8-45b8743cb21a">
+
 
 https://github.com/SoyGema/pulling_ace/assets/24204714/9c1edbf6-2949-43c6-805e-c9d6995d78aa
 
